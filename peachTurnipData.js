@@ -1,7 +1,7 @@
 const { SlippiGame } = require("@slippi/slippi-js");
 const { Frames } = require("@slippi/slippi-js");
 
-const replayFolder = './Slippi/';
+const replayFolder = './Een/';
 const fs = require('fs');
 const prompt = require('prompt-sync')();
 
@@ -104,7 +104,7 @@ for(i = 0; i < 26; i++) {
 let x = 1;
 let y = 1;
 files.forEach(file => {
-	const filename = './Slippi/' + file;
+	const filename = './Een/' + file;
 	// Create game object
 	const game = new SlippiGame(filename);
 	// Get game settings
@@ -116,7 +116,7 @@ files.forEach(file => {
 	//console.log(filename);
 	// We only want singles games.  
 	// Currently ignoring games where metadata is null.  Will try to figure those out eventually if possible.  
-	if (!settings.isTeams && metadata != null) {
+	if (!settings.isTeams && metadata != null && metadata.players[0] != null) {
 		// Check if the specified player is player 1 and playing peach
 		if(metadata.players[0].names.code == playerCode && settings.players[0].characterId == 12) { 
 			peach = 0; 
