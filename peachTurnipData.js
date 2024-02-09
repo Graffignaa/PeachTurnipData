@@ -1,11 +1,12 @@
 const { SlippiGame } = require("@slippi/slippi-js");
 const { Frames } = require("@slippi/slippi-js");
 
-const replayFolder = './Een/';
 const fs = require('fs');
 const prompt = require('prompt-sync')();
 
 var files = [];
+var out = ""
+const replayFolder = prompt('Enter the directory containing .slp files.  Include ./ if this is located in the current directory.  I.e. ./slippi/: ');
 
 fs.readdirSync(replayFolder).forEach(file => {
   files.push(file);
@@ -16,8 +17,11 @@ const readline = require('readline').createInterface({
   output: process.stdout
 });
 
+
+
 // Get input for player's connect code we are looking at stats for
 const playerCode = prompt('Enter the connect code of the Peach player whose turnip stats you would like to calculate (I.e. TOES#318): ');
+
 /*
 Character IDs:
 0  -  Captain Falcon
@@ -104,7 +108,7 @@ for(i = 0; i < 26; i++) {
 let x = 1;
 let y = 1;
 files.forEach(file => {
-	const filename = './Een/' + file;
+	const filename = replayFolder + file;
 	// Create game object
 	const game = new SlippiGame(filename);
 	// Get game settings
@@ -172,100 +176,107 @@ files.forEach(file => {
 })
 console.log(" ");
 console.log("Per Character Turnip Stats: ");
+out += "Per Character Turnip Stats: \n"
+
 console.log(" ");
 for(j = 0; j < 26; j++) {
 	switch(j) {
 		case 0: 
-			console.log("Stats Vs. Captain Falcon: ");
+			out += "Stats Vs. Captain Falcon: \n";
 			break;
 		case 1: 
-			console.log("Stats Vs. Donkey Kong: ");
+			out += "Stats Vs. Donkey Kong: \n";
 			break;	
 		case 2: 
-			console.log("Stats Vs. Fox: ");
+			out += "Stats Vs. Fox: \n";
 			break;	
 		case 3: 
-			console.log("Stats Vs. Mr. Game and Watch: ");
+			out += "Stats Vs. Mr. Game and Watch: \n";
 			break;	
 		case 4: 
-			console.log("Stats Vs. Kirby: ");
+			out += "Stats Vs. Kirby: \n";
 			break;	
 		case 5: 
-			console.log("Stats Vs. Bowser: ");
+			out += "Stats Vs. Bowser: \n";
 			break;	
 		case 6: 
-			console.log("Stats Vs. Link: ");
+			out += "Stats Vs. Link: \n";
 			break;	
 		case 7: 
-			console.log("Stats Vs. Luigi: ");
+			out += "Stats Vs. Luigi: \n";
 			break;	
 		case 8: 
-			console.log("Stats Vs. Mario: ");
+			out += "Stats Vs. Mario: \n";
 			break;	
 		case 9: 
-			console.log("Stats Vs. Marth: ");
+			out += "Stats Vs. Marth: \n";
 			break;	
 		case 10: 
-			console.log("Stats Vs. Mewtwo: ");
+			out += "Stats Vs. Mewtwo: \n";
 			break;	
 		case 11: 
-			console.log("Stats Vs. Ness: ");
+			out += "Stats Vs. Ness: \n";
 			break;	
 		case 12: 
-			console.log("Stats Vs. Peach: ");
+			out += "Stats Vs. Peach: \n";
 			break;	
 		case 13: 
-			console.log("Stats Vs. Pikachu: ");
+			out += "Stats Vs. Pikachu: \n";
 			break;	
 		case 14: 
-			console.log("Stats Vs. Ice Climbers: ");
+			out += "Stats Vs. Ice Climbers: \n";
 			break;	
 		case 15: 
-			console.log("Stats Vs. Jigglypuff: ");
+			out += "Stats Vs. Jigglypuff: \n";
 			break;	
 		case 16: 
-			console.log("Stats Vs. Samus: ");
+			out += "Stats Vs. Samus: \n";
 			break;	
 		case 17: 
-			console.log("Stats Vs. Yoshi: ");
+			out += "Stats Vs. Yoshi: \n";
 			break;	
 		case 18: 
-			console.log("Stats Vs. Zelda: ");
+			out += "Stats Vs. Zelda: \n";
 			break;	
 		case 19: 
-			console.log("Stats Vs. Sheik: ");
+			out += "Stats Vs. Sheik: \n";
 			break;	
 		case 20: 
-			console.log("Stats Vs. Falco: ");
+			out += "Stats Vs. Falco: \n";
 			break;	
 		case 21: 
-			console.log("Stats Vs. Young Link: ");
+			out += "Stats Vs. Young Link: \n";
 			break;	
 		case 22: 
-			console.log("Stats Vs. Dr. Mario: ");
+			out += "Stats Vs. Dr. Mario: \n";
 			break;	
 		case 23: 
-			console.log("Stats Vs. Roy: ");
+			out += "Stats Vs. Roy: \n";
 			break;	
 		case 24: 
-			console.log("Stats Vs. Pichu: ");
+			out += "Stats Vs. Pichu: \n";
 			break;	
 		case 25: 
-			console.log("Stats Vs. Ganondorf: ");
+			out += "Stats Vs. Ganondorf: \n";
 			break;	
 	}
 	const c = charArray[j];
-	console.log("Total Games: " + c.games);
-	console.log("Total Pulls: " + c.totalPulls);
-	console.log("Average Pulls Per Game: " + (c.totalPulls / c.games));
-	console.log("Normal Turnips Pulled: " + c.normalPulls);
-	console.log("Wink Faces Pulled: " + c.winkPulls);
-	console.log("Dot Faces Pulled: " + c.dotPulls);
-	console.log("Stitch Faces Pulled: " + c.stitchPulls);
-	console.log("Mr. Saturns Pulled: " + c.saturnPulls);
-	console.log("Beam Swords Pulled: " + c.beamswordPulls);
-	console.log("Bob-ombs Pulled: " + c.bombPulls);
-	console.log(" ");
+	out +="Total Games: " + c.games + "\n";
+	out +="Total Pulls: " + c.totalPulls + "\n";
+	out +="Average Pulls Per Game: " + (c.totalPulls / c.games) + "\n";
+	out +="Normal Turnips Pulled: " + c.normalPulls + "\n";
+	out +="Wink Faces Pulled: " + c.winkPulls + "\n";
+	out +="Dot Faces Pulled: " + c.dotPulls + "\n";
+	out +="Stitch Faces Pulled: " + c.stitchPulls + "\n";
+	out +="Mr. Saturns Pulled: " + c.saturnPulls + "\n";
+	out +="Beam Swords Pulled: " + c.beamswordPulls + "\n";
+	out +="Bob-ombs Pulled: " + c.bombPulls + "\n";
+	out +=" " + "\n";
+
+	fs.writeFile(playerCode + 'turnipdata.txt', out, (err) => {
+		if (err) throw err;
+	})
+	
 }
 
 // Process the given game object and return a gameData object containing turnip pull stats
